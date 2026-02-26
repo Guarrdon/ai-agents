@@ -1,10 +1,10 @@
-# Task: Add navigation and routing for advanced AI section
+# Task: Integrate written content into frontend advanced AI section
 
-**Task ID:** work_5a83bfc269b2
+**Task ID:** work_3c6686cf0d44
 
 ## Description
 
-Wire up the advanced AI section to the site's navigation and routing. Add links from the beginner section (e.g., a 'Ready to go deeper?' CTA), update the site's main navigation or table of contents, and ensure proper routing/URL structure consistent with the beginner section's conventions.
+Populate the advanced AI section frontend with the authored content from issues 2, 3, and 4. Format content using the appropriate markup/components, embed any diagrams or media, and ensure proper content rendering for all subsections.
 
 ## Skills
 
@@ -64,12 +64,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-Wire up the advanced AI section to the site's navigation and routing. Add links from the beginner section (e.g., a 'Ready to go deeper?' CTA), update the site's main navigation or table of contents, and ensure proper routing/URL structure consistent with the beginner section's conventions.
+Populate the advanced AI section frontend with the authored content from issues 2, 3, and 4. Format content using the appropriate markup/components, embed any diagrams or media, and ensure proper content rendering for all subsections.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `f/issue_da00349b220a/compute-001`
+- **Branch:** `f/issue_18fecdeb651e/compute-001`
 - **Base:** `main`
 
 ### Commit your work

@@ -316,4 +316,4 @@ Rule of thumb: train a model for **~20 tokens per parameter** for compute-optima
 
 ---
 
-*Navigation: [← Neural Networks](neural-networks.md) · [Advanced Home](../README.md) · [Next: Training Techniques →](training-techniques.md)*
+*Navigation: [← Neural Networks](neural-networks.md) · [Advanced Home](../README.md) · [Next: Large Language Models →](large-language-models.md)*

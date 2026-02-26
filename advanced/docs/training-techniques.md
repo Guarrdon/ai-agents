@@ -300,4 +300,4 @@ Standard values: `max_norm=1.0` for most LLM training.
 
 ---
 
-*Navigation: [← Model Architectures](model-architectures.md) · [Advanced Home](../README.md) · [Next: Fine-Tuning →](fine-tuning.md)*
+*Navigation: [← Prompt Engineering](prompt-engineering.md) · [Advanced Home](../README.md) · [Next: Fine-Tuning →](fine-tuning.md)*
