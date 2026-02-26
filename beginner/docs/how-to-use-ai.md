@@ -2,6 +2,10 @@
 
 # How to Use AI in Your Everyday Life 🤖
 
+> 📍 [Home](../../README.md) › [Beginner](../README.md) › How to Use AI
+
+---
+
 **A beginner's guide for everyone — no tech experience needed!**
 
 ---

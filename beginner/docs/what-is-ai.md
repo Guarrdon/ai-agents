@@ -2,6 +2,10 @@
 
 # What Is Artificial Intelligence?
 
+> 📍 [Home](../../README.md) › [Beginner](../README.md) › What Is AI?
+
+---
+
 ## In One Sentence
 
 Artificial Intelligence (AI) is technology that allows computers to do things that normally require human thinking — like recognizing your face, understanding your voice, or suggesting a movie you might enjoy.
