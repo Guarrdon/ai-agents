@@ -265,6 +265,65 @@ Simple averaging of model weights from multiple checkpoints or models fine-tuned
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** How does LoRA reduce the number of trainable parameters compared to full fine-tuning?
+
+<details>
+<summary>Answer</summary>
+
+LoRA (Low-Rank Adaptation) keeps the original pre-trained weights `W₀` **frozen** and adds a small trainable update expressed as a product of two low-rank matrices: `ΔW = A · B`, where A ∈ ℝ^(d×r) and B ∈ ℝ^(r×k), with rank `r << min(d, k)`.
+
+The forward pass uses `W₀ + A · B` without modifying W₀.
+
+**Parameter savings example:** For a weight matrix W with d=4096, k=4096 (16.7M parameters), using rank r=16 requires only `(4096×16) + (16×4096) = 131,072` trainable parameters — less than 1% of the original. For a 7B parameter model, this typically means ~5-20M trainable parameters instead of 7 billion.
+
+</details>
+
+---
+
+**Q2.** What advantage does DPO have over PPO-based RLHF for alignment fine-tuning?
+
+<details>
+<summary>Answer</summary>
+
+DPO (Direct Preference Optimisation) eliminates the need for a **separate reward model** and the **RL training loop**:
+
+- **PPO RLHF** requires: (1) training a reward model on preference data, (2) running PPO with 3–4 model copies in memory (policy, reference, reward model, and optionally value model), (3) tuning RL-specific hyperparameters (KL coefficient, clipping range, etc.).
+
+- **DPO** reformulates the RLHF objective into a supervised binary cross-entropy loss directly on (preferred, rejected) response pairs, with the reference model (SFT model) used only for computing a log-probability ratio — no reward model needed.
+
+DPO is simpler to implement, more memory-efficient, more numerically stable, and competitive with PPO on most benchmarks. It has become the dominant alignment method.
+
+</details>
+
+---
+
+**Q3.** What does QLoRA enable, and what technique makes it possible?
+
+<details>
+<summary>Answer</summary>
+
+**QLoRA** enables fine-tuning large models (e.g., 65B parameters) on a **single consumer GPU** (e.g., 48GB A6000 or even 24GB RTX 3090) by combining:
+
+1. **4-bit NormalFloat (NF4) quantisation** of the frozen base model weights — reducing memory from ~130 GB (FP32) to ~33 GB (4-bit), while preserving the information-theoretically optimal distribution for normally-distributed weights.
+
+2. **Double quantisation** — quantising the quantisation constants themselves to save additional memory.
+
+3. **Paged optimisers** — managing GPU memory spikes by offloading optimiser states to CPU RAM when needed.
+
+The trainable LoRA adapters remain in BF16 (higher precision). Only they are updated; the quantised base model weights are dequantised to BF16 on the fly for each forward pass.
+
+</details>
+
+---
+
+➡️ **Full quiz with 3 questions:** [Knowledge Checks → Fine-Tuning](knowledge-checks.md#8-fine-tuning)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

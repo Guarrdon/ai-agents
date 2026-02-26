@@ -501,6 +501,53 @@ LLMs are not a break from earlier deep learning — they apply foundational conc
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** What does the Chinchilla scaling law suggest about the optimal ratio of training tokens to model parameters?
+
+<details>
+<summary>Answer</summary>
+
+Chinchilla (Hoffmann et al., 2022) found that for a given compute budget, the optimal ratio is approximately **20 training tokens per model parameter**. Earlier large models like GPT-3 (175B params, ~300B tokens) were undertrained relative to their size. A compute-optimal 175B model should be trained on ~3.5 trillion tokens. This insight led to smaller, better-trained models like Chinchilla 70B outperforming much larger models trained on less data.
+
+</details>
+
+---
+
+**Q2.** What problem does KV caching solve during autoregressive inference, and what is the trade-off?
+
+<details>
+<summary>Answer</summary>
+
+**Problem solved:** Without caching, generating each new token requires recomputing Key and Value projections for all previous tokens — O(n) per step, O(n²) total. KV caching stores the computed K and V tensors for all past positions and reuses them, so only the new token's K/V need computing each step.
+
+**Trade-off:** KV cache memory grows linearly with sequence length and batch size. For a 70B parameter model with 80 attention layers, 8 KV heads, and head dimension 128, a context of 4K tokens requires ~40 GB of KV cache for a batch of 1 — becoming a significant memory bottleneck for long contexts or large batches. Techniques like GQA and sliding window attention reduce this cost.
+
+</details>
+
+---
+
+**Q3.** What are the three stages of the RLHF training pipeline, in order?
+
+<details>
+<summary>Answer</summary>
+
+1. **Supervised Fine-Tuning (SFT):** Fine-tune the pretrained base model on a curated dataset of high-quality prompt-response demonstrations from human experts.
+
+2. **Reward Model Training:** Train a separate model to predict human preference scores. Human annotators rank multiple model outputs for each prompt; the reward model learns to assign higher scores to preferred responses.
+
+3. **Reinforcement Learning (PPO):** Fine-tune the SFT model using PPO, using the reward model's scores as the reward signal. A KL divergence penalty prevents the policy from drifting too far from the SFT model (preventing "reward hacking").
+
+</details>
+
+---
+
+➡️ **Full quiz with 4 questions:** [Knowledge Checks → Large Language Models](knowledge-checks.md#4-large-language-models)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

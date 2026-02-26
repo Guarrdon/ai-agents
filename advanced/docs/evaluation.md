@@ -366,6 +366,68 @@ P, R, F1 = bertscore(hypotheses, references, lang="en", model_type="roberta-larg
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** A spam classifier achieves 99% accuracy on a dataset where 99% of emails are legitimate. What does this tell you about the model's performance?
+
+<details>
+<summary>Answer</summary>
+
+Almost nothing useful. A trivial classifier that always predicts "legitimate" achieves the same 99% accuracy — without detecting a single spam email.
+
+For **class-imbalanced** problems like spam detection, fraud detection, or medical diagnosis, accuracy is misleading. Use instead:
+
+- **Precision** = TP / (TP + FP): how accurate are spam predictions?
+- **Recall** = TP / (TP + FN): what fraction of actual spam is caught?
+- **F1 score** = harmonic mean of precision and recall
+- **AUC-ROC** or **Precision-Recall AUC** for a threshold-independent view
+
+For spam: you likely want high recall (catch most spam) while tolerating some false positives.
+
+</details>
+
+---
+
+**Q2.** What is LLM-as-judge evaluation, and what are two biases you must account for when using it?
+
+<details>
+<summary>Answer</summary>
+
+**LLM-as-judge** uses a powerful LLM (e.g., GPT-4, Claude 3 Opus) to score or compare outputs from another model, replacing or supplementing human evaluation.
+
+**Two key biases:**
+
+1. **Position bias:** When comparing two responses (A vs. B), the judge tends to prefer whichever response appears first in the prompt (primacy effect) or last (recency effect). Mitigation: run both orderings (A vs. B and B vs. A) and average the results.
+
+2. **Length bias:** Judges tend to prefer longer, more verbose responses even when conciseness would be more appropriate. Mitigation: include explicit length guidance in the judge prompt; evaluate both a concise and verbose version.
+
+Other valid answers: self-enhancement bias (judge prefers outputs from similar models), style bias (formatting/confidence affects scores), calibration issues.
+
+</details>
+
+---
+
+**Q3.** Why should you never use the test set for hyperparameter tuning, and what split should you use instead?
+
+<details>
+<summary>Answer</summary>
+
+The test set is intended to simulate unseen production data — an unbiased estimate of generalisation performance. If you use it to choose hyperparameters, you are implicitly fitting those choices to the test set, causing **data leakage**: the reported test performance will be overly optimistic and not representative of true deployment performance.
+
+Use the **validation set** (also called development set) for all hyperparameter tuning and model selection decisions. The test set should be evaluated only **once**, after all decisions are finalised, to report the final performance.
+
+For small datasets where a held-out validation set would be too small: use **k-fold cross-validation** on the training set to tune hyperparameters, then train on all training data and evaluate once on the test set.
+
+</details>
+
+---
+
+➡️ **Full quiz with 3 questions:** [Knowledge Checks → Evaluation](knowledge-checks.md#9-evaluation)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

@@ -346,6 +346,64 @@ Standard values: `max_norm=1.0` for most LLM training.
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** What is the primary purpose of gradient clipping in large model training, and how does it work?
+
+<details>
+<summary>Answer</summary>
+
+**Purpose:** Prevent exploding gradients from destabilising training. If a gradient vector is abnormally large (due to a difficult example or numerical instability), unconstrained updates can push weights far outside a useful range, causing a loss spike or training divergence.
+
+**How it works:** Before the optimiser step, the global gradient norm is computed. If it exceeds a threshold (e.g., 1.0), all gradients are scaled down proportionally so the norm equals the threshold:
+
+```python
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+```
+
+This preserves gradient direction while bounding step size.
+
+</details>
+
+---
+
+**Q2.** What is the key difference between Tensor Parallelism and Pipeline Parallelism in distributed training?
+
+<details>
+<summary>Answer</summary>
+
+- **Tensor Parallelism (TP):** Splits individual weight matrices across devices. For example, an MLP layer's weight matrix is column-split across 8 GPUs, each computing a partial matrix multiplication. Requires AllReduce communication at each layer boundary. Good for very large layers (attention, FFN in transformers).
+
+- **Pipeline Parallelism (PP):** Assigns consecutive layers (a "stage") to each device. Data flows through the pipeline sequentially. Communication is cheaper (only activations at stage boundaries) but requires careful microbatch scheduling to avoid GPU idle time ("pipeline bubbles").
+
+Both are commonly combined with Data Parallelism (DP) as 3D parallelism (TP × PP × DP) for training the largest models.
+
+</details>
+
+---
+
+**Q3.** Why is BF16 preferred over FP16 for LLM training despite having less numerical precision?
+
+<details>
+<summary>Answer</summary>
+
+BF16 (Brain Float 16) has 8 exponent bits and 7 mantissa bits, while FP16 has 5 exponent bits and 10 mantissa bits.
+
+- **FP16** has higher precision in its mantissa but a very limited dynamic range (max value ~65,504). Large gradient values overflow to NaN/Inf, requiring loss scaling hacks and careful monitoring.
+- **BF16** matches FP32's dynamic range (same 8-bit exponent, same max value), making it numerically stable for the wide range of gradient magnitudes encountered in LLM training — without requiring loss scaling.
+
+The lower mantissa precision of BF16 has negligible impact on final model quality in practice. Most modern LLM training (LLaMA, GPT-4, Gemini) uses BF16 as the default mixed-precision format.
+
+</details>
+
+---
+
+➡️ **Full quiz with 3 questions:** [Knowledge Checks → Training Techniques](knowledge-checks.md#7-training-techniques)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

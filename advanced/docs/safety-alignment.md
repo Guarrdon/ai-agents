@@ -268,6 +268,75 @@ PRMs trained to evaluate reasoning steps enable humans to verify that an AI's an
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** What is the alignment problem, and why is it not simply a matter of programming explicit rules?
+
+<details>
+<summary>Answer</summary>
+
+The **alignment problem** is the challenge of ensuring that AI systems reliably pursue the goals their designers intend, rather than proxy objectives that may diverge in unexpected ways — especially in novel or high-stakes situations.
+
+It is not just about writing explicit rules because:
+
+1. **Specification is hard:** Human values are complex, context-dependent, and difficult to formalise. Any rule set will have edge cases and unintended interpretations.
+2. **Reward hacking:** Systems optimised for a measurable proxy (e.g., human approval ratings) will find ways to score highly on the proxy that don't correspond to the intended goal (e.g., being sycophantic rather than truthful).
+3. **Distribution shift:** Rules that work in training may not generalise to novel situations encountered at deployment — an aligned system must extrapolate intent, not just pattern-match.
+4. **Emergent capabilities:** As models scale, new behaviours emerge that weren't present (or harmful) at smaller scales, requiring ongoing alignment work.
+
+</details>
+
+---
+
+**Q2.** What is Constitutional AI (CAI), and how does it differ from standard RLHF that relies on human preference labels?
+
+<details>
+<summary>Answer</summary>
+
+**Constitutional AI (CAI)**, developed by Anthropic, uses a set of written principles (a "constitution") to guide the model's own self-critique and revision, replacing human preference labels for harmlessness training.
+
+**Process:**
+1. **Supervised stage:** The model generates an initial response, then critiques and revises it according to the constitutional principles (e.g., "Is this response harmful? How could it be revised to be safer?"). The revised responses are used for SFT.
+2. **RLAIF stage:** Instead of human raters, a **feedback model** (trained on the constitution) scores pairs of responses. These AI-generated labels train a reward model used for PPO.
+
+**Key differences from standard RLHF:**
+- Dramatically **less dependence on human annotation** for harmlessness (only helpfulness preferences still use human labels)
+- The principles are **explicit and auditable** — you can inspect and modify what the model is optimised for
+- Scales more cheaply than human feedback
+- May introduce biases from the AI feedback model's own limitations
+
+</details>
+
+---
+
+**Q3.** What does mechanistic interpretability research aim to understand, and why is it relevant to AI safety?
+
+<details>
+<summary>Answer</summary>
+
+**Mechanistic interpretability** aims to reverse-engineer the internal computations of neural networks — identifying the specific circuits, features, and algorithms implemented in model weights that produce particular behaviours.
+
+Unlike post-hoc explanation methods that approximate the model from the outside, mechanistic interpretability works from the inside:
+- **Features:** What concepts individual neurons (or linear combinations — "superposition") represent
+- **Circuits:** Which groups of neurons implement specific computations (e.g., induction heads for in-context learning)
+- **Algorithms:** What high-level computation strategy the model uses for specific tasks
+
+**Relevance to safety:**
+1. If we can read out what a model "believes" or "intends" from its activations, we can potentially detect deceptive or misaligned reasoning before it causes harm
+2. Interpretability tools can identify whether safety training generalised correctly or only suppressed surface behaviours
+3. Activation steering (modifying model behaviour by adding vectors to its activations) allows testing causal hypotheses about model behaviour
+4. Understanding circuits is prerequisite to verifying that alignment interventions work mechanistically, not just behaviourally
+
+</details>
+
+---
+
+➡️ **Full quiz with 3 questions:** [Knowledge Checks → Safety & Alignment](knowledge-checks.md#13-safety--alignment)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |
