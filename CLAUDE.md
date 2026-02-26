@@ -1,10 +1,10 @@
-# Task: Update project root README to reflect new beginner/advanced structure
+# Task: Define content outline and structure for advanced AI section
 
-**Task ID:** work_6a5322b64ae5
+**Task ID:** work_b57ac9e2d6b4
 
 ## Description
 
-Update (or create) the root-level README.md to document the new two-tier folder structure. Explain the distinction between beginner and advanced content, who each section targets, and how to navigate the project. Add links to both sections so users can immediately find the right starting point.
+Audit the existing beginner AI section to understand its structure, tone, and format. Define the outline for the advanced section, covering topics such as deep learning architectures, neural networks, transformers, large language models, reinforcement learning, and AI ethics at depth. Identify which topics require diagrams or interactive elements.
 
 ## Skills
 
@@ -64,12 +64,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-Update (or create) the root-level README.md to document the new two-tier folder structure. Explain the distinction between beginner and advanced content, who each section targets, and how to navigate the project. Add links to both sections so users can immediately find the right starting point.
+Audit the existing beginner AI section to understand its structure, tone, and format. Define the outline for the advanced section, covering topics such as deep learning architectures, neural networks, transformers, large language models, reinforcement learning, and AI ethics at depth. Identify which topics require diagrams or interactive elements.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `d/issue_db4ce2776041/compute-001`
+- **Branch:** `d/issue_40fcd1f62b00/compute-002`
 - **Base:** `main`
 
 ### Commit your work
