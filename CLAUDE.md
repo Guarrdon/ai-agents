@@ -1,10 +1,10 @@
-# Task: Create beginner folder and migrate existing AI description markdown content
+# Task: Update project root README to reflect new beginner/advanced structure
 
-**Task ID:** work_a519d2d0fc27
+**Task ID:** work_6a5322b64ae5
 
 ## Description
 
-Create a top-level `beginner/` folder and move the existing AI description markdown folder/files into it. This restructures the current content to be explicitly targeted at beginners, establishing the new two-tier directory hierarchy. Update any internal links or references that may break due to the path change.
+Update (or create) the root-level README.md to document the new two-tier folder structure. Explain the distinction between beginner and advanced content, who each section targets, and how to navigate the project. Add links to both sections so users can immediately find the right starting point.
 
 ## Skills
 
@@ -64,12 +64,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-Create a top-level `beginner/` folder and move the existing AI description markdown folder/files into it. This restructures the current content to be explicitly targeted at beginners, establishing the new two-tier directory hierarchy. Update any internal links or references that may break due to the path change.
+Update (or create) the root-level README.md to document the new two-tier folder structure. Explain the distinction between beginner and advanced content, who each section targets, and how to navigate the project. Add links to both sections so users can immediately find the right starting point.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `r/issue_e9c6ba72aeab/compute-002`
+- **Branch:** `d/issue_db4ce2776041/compute-001`
 - **Base:** `main`
 
 ### Commit your work
