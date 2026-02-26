@@ -52,6 +52,11 @@ Welcome to the AI Learning Resources repository! This project provides education
 - Code examples and implementation guides
 - Coverage of topics such as neural networks, model training, evaluation, and deployment
 
+**Advanced content:**
+- [AI Ethics, Safety, Bias & Responsible AI](./advanced/docs/06-ai-ethics.md) — Fairness metrics, explainability (SHAP, LIME), privacy-preserving ML, alignment, and the regulatory landscape
+- [Advanced AI Training Techniques](./advanced/docs/07-training-techniques.md) — Transfer learning, fine-tuning, LoRA, QLoRA, RLHF, DPO, and curriculum learning
+- [Model Evaluation Metrics](./advanced/docs/08-model-evaluation.md) — Classification, regression, and language model evaluation; calibration; experimental design
+
 ---
 
 ## 🗺️ How to Navigate
