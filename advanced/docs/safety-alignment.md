@@ -282,4 +282,26 @@ PRMs trained to evaluate reasoning steps enable humans to verify that an AI's an
 
 ---
 
-*Navigation: [← AI Agents](agents.md) · [Advanced Home](../README.md)*
+## 🎉 You've Completed the Advanced Learning Path!
+
+Congratulations on working through all eight topics in the Advanced AI section! Here's a quick recap of the full journey:
+
+```
+1. Neural Networks       → The foundation of modern deep learning
+2. Model Architectures   → Transformers, attention, SSMs, MoE
+3. Training Techniques   → Optimisation, distributed training, precision
+4. Fine-Tuning           → PEFT, LoRA, instruction tuning, RLHF
+5. Evaluation            → Benchmarks, metrics, LLM-as-judge
+6. RAG                   → Retrieval-Augmented Generation pipelines
+7. AI Agents             → Tool use, planning, memory, multi-agent
+8. Safety & Alignment    → ✅ You are here
+```
+
+**Where to go from here:**
+- [← Review the Advanced Section overview](../README.md) — revisit the learning path or explore topics you want to go deeper on
+- [← Return to the Beginner Section](../../beginner/README.md) — share these resources with someone just starting out
+- [← Home](../../README.md) — back to the top-level overview of all AI Learning Resources
+
+---
+
+*Navigation: [← AI Agents](agents.md) · [Advanced Home](../README.md) · [Home →](../../README.md)*

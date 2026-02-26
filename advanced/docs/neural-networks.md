@@ -254,4 +254,4 @@ Penalises large weights, built into the `AdamW` optimiser via the `weight_decay`
 
 ---
 
-*Navigation: [Advanced Home](../README.md) · [Next: Model Architectures →](model-architectures.md)*
+*Navigation: [← Beginner Section](../../beginner/README.md) · [Advanced Home](../README.md) · [Next: Model Architectures →](model-architectures.md)*

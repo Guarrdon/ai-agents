@@ -1,8 +1,12 @@
 # Advanced AI Section
 
+> 📍 [Home](../README.md) › Advanced AI Section
+
 Welcome to the **Advanced AI** section of the AI Learning Resources. This section is designed for developers, researchers, and technical professionals who are ready to go beyond the basics and explore the mechanics, architectures, and implementation details behind modern AI systems.
 
 **[← Back to Home](../README.md)**
+
+> 💡 **New to AI?** If you haven't already, we recommend starting with the [Beginner Section](../beginner/README.md) to build foundational understanding before diving into the technical content here.
 
 ---
 
