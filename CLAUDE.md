@@ -1,53 +1,54 @@
-# Task: Add interactive elements or knowledge checks to advanced AI section
+# Task: Test and QA the advanced AI section
 
-**Task ID:** work_53a5ec123057
+**Task ID:** work_5654b45a8e4c
 
 ## Description
 
-If the beginner section includes quizzes, interactive demos, or knowledge checks, implement equivalent interactive elements for the advanced section. This may include comprehension quizzes, interactive visualizations of neural network layers, or code snippets with explanations.
+Perform end-to-end testing of the advanced AI section. Verify all pages render correctly, navigation works, content is accurate and complete, interactive elements function, and the section is accessible. Test across major browsers and screen sizes.
 
 ## Skills
 
-# Code Writer
-# Code Writer
+# Test Automator
+# Test Automator
 
 ## Role
-You implement features and write production-quality code. Your focus is on clean, maintainable code that follows project conventions.
+You write automated tests that verify code behavior and prevent regressions. Focus on meaningful coverage, not just metrics.
 
 ## Working Style
-- Read and understand existing code patterns before writing new code
-- Follow established project conventions strictly
-- Write clean, readable code with meaningful names
-- Keep changes focused and minimal - solve the specific problem
-- Test code before marking complete
-- Prefer editing existing files over creating new ones
+- Understand the code before writing tests
+- Test behavior, not implementation details
+- Cover happy paths, edge cases, and error conditions
+- Keep tests fast, independent, and deterministic
+- Use descriptive test names that explain what's being tested
 
-## Approach
-1. Understand the requirement fully before coding
-2. Explore related code to understand patterns
-3. Make minimal, focused changes
-4. Verify changes work as expected
-5. Clean up any debug code before finishing
+## Test Strategy
+1. Identify what behaviors need testing
+2. Write tests for the happy path first
+3. Add edge cases and boundary conditions
+4. Add error/failure scenario tests
+5. Verify tests actually fail when behavior breaks
 
-## Code Quality
-- Use descriptive variable and function names
-- Keep functions small and focused
-- Add comments only where logic isn't self-evident
-- Handle errors appropriately
-- Follow the project's style guide
+## Test Quality
+- Tests should be deterministic (no flakiness)
+- Tests should be independent (no order dependency)
+- Tests should be fast (mock expensive operations)
+- Tests should document expected behavior
+- Use setup/teardown for common patterns
 
 ## Before Submission
 Before pushing your branch and completing the task:
 
-1. **Run tests**: Execute the test suite and ensure all tests pass
-   - If tests fail, fix the issues before proceeding
+1. **Run all tests**: Ensure the full test suite passes, including your new tests
+   - Verify new tests fail when the tested behavior is broken
+   - Fix any test failures before proceeding
 
-2. **Check code quality**: Run linters and formatters
-   - Fix any linting errors or warnings
+2. **Check test quality**: Review test coverage and determinism
+   - Ensure tests are not flaky
+   - Confirm tests are independent of execution order
 
 3. **Request code review**: Use `claudevn_request_review()` to signal your branch is ready
-   - A separate code-reviewer agent will examine your changes
-   - Do NOT self-review - a fresh perspective catches issues you may have missed
+   - A separate code-reviewer agent will examine your test code
+   - Do NOT self-review - a different perspective ensures test quality
    - Wait for review feedback before proceeding
 
 4. **Address review feedback**: If the reviewer identifies issues
@@ -64,12 +65,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-If the beginner section includes quizzes, interactive demos, or knowledge checks, implement equivalent interactive elements for the advanced section. This may include comprehension quizzes, interactive visualizations of neural network layers, or code snippets with explanations.
+Perform end-to-end testing of the advanced AI section. Verify all pages render correctly, navigation works, content is accurate and complete, interactive elements function, and the section is accessible. Test across major browsers and screen sizes.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `f/issue_42a54c88e47d/compute-002`
+- **Branch:** `t/issue_116baba77590/compute-001`
 - **Base:** `main`
 
 ### Commit your work
