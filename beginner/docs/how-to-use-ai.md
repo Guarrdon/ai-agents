@@ -1,3 +1,5 @@
+> 📍 [Home](../../README.md) › [Beginner](../README.md) › How to Use AI in Your Everyday Life
+
 # How to Use AI in Your Everyday Life 🤖
 
 **A beginner's guide for everyone — no tech experience needed!**
@@ -222,5 +224,24 @@ Congratulations — you now know enough to start exploring AI tools with confide
 The more you use AI, the more comfortable you'll feel. And who knows — you might be surprised at just how helpful it can be in your daily life!
 
 ---
+
+## 🚀 Ready to Go Deeper?
+
+You've mastered the basics — nice work! If you're curious about *how* AI actually works under the hood, the Advanced section is your next stop:
+
+**[→ Explore the Advanced AI Section](../../advanced/README.md)**
+
+You'll find technical deep-dives into:
+
+- [Neural Networks](../../advanced/docs/neural-networks.md) — How AI systems learn from data
+- [Model Architectures](../../advanced/docs/model-architectures.md) — Transformers and modern AI designs
+- [Training Techniques](../../advanced/docs/training-techniques.md) — How large models are built and optimised
+- [AI Safety & Alignment](../../advanced/docs/safety-alignment.md) — Keeping AI systems safe and beneficial
+
+Don't worry — the advanced section explains everything step by step, building from the foundations up.
+
+---
+
+*Navigation: [← What Is AI?](what-is-ai.md) · [Beginner Home](../README.md) · [Advanced Section →](../../advanced/README.md)*
 
 *Last updated: February 2026*
