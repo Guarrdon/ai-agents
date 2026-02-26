@@ -1,10 +1,10 @@
-# Task: Integrate written content into frontend advanced AI section
+# Task: Add interactive elements or knowledge checks to advanced AI section
 
-**Task ID:** work_3c6686cf0d44
+**Task ID:** work_53a5ec123057
 
 ## Description
 
-Populate the advanced AI section frontend with the authored content from issues 2, 3, and 4. Format content using the appropriate markup/components, embed any diagrams or media, and ensure proper content rendering for all subsections.
+If the beginner section includes quizzes, interactive demos, or knowledge checks, implement equivalent interactive elements for the advanced section. This may include comprehension quizzes, interactive visualizations of neural network layers, or code snippets with explanations.
 
 ## Skills
 
@@ -64,12 +64,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-Populate the advanced AI section frontend with the authored content from issues 2, 3, and 4. Format content using the appropriate markup/components, embed any diagrams or media, and ensure proper content rendering for all subsections.
+If the beginner section includes quizzes, interactive demos, or knowledge checks, implement equivalent interactive elements for the advanced section. This may include comprehension quizzes, interactive visualizations of neural network layers, or code snippets with explanations.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `f/issue_18fecdeb651e/compute-002`
+- **Branch:** `f/issue_42a54c88e47d/compute-002`
 - **Base:** `main`
 
 ### Commit your work

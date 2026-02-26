@@ -752,6 +752,51 @@ As a general rule: **start with the simplest architecture that fits your data mo
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** A convolutional filter of size 3×3 is applied to a 32×32 input with 1 channel, using stride 1 and "same" padding. What is the output spatial dimension?
+
+<details>
+<summary>Answer</summary>
+
+**32×32** — "same" padding adds `(k-1)/2 = 1` pixel of zeros on each side. Using the formula `H' = floor((H + 2p - k) / s) + 1 = floor((32 + 2 - 3) / 1) + 1 = 32`. Same padding preserves spatial dimensions.
+
+</details>
+
+---
+
+**Q2.** Why do plain RNNs struggle with long-range dependencies, and how do LSTMs address this?
+
+<details>
+<summary>Answer</summary>
+
+In plain RNNs, gradients are multiplied by the recurrent weight matrix at each time step during backpropagation through time. This causes gradients to **vanish** (shrink toward zero) or **explode** over many steps, making it impossible to learn dependencies between tokens far apart in the sequence.
+
+LSTMs introduce a **cell state** — a dedicated memory lane that runs alongside the hidden state with additive (not multiplicative) updates. The **forget gate** (σ) controls what to erase, the **input gate** controls what to write, and the **output gate** controls what to expose. The additive cell state update allows gradients to flow across many time steps without vanishing.
+
+</details>
+
+---
+
+**Q3.** What is the "reparameterisation trick" in VAEs and why is it needed for training?
+
+<details>
+<summary>Answer</summary>
+
+The VAE encoder outputs `μ` and `log σ²` for a Gaussian distribution. To sample a latent vector `z`, we need `z ~ N(μ, σ²)` — but **sampling is not differentiable**, blocking gradient flow to the encoder.
+
+The trick reformulates the sample as `z = μ + σ · ε` where `ε ~ N(0, 1)` is treated as external noise. Now `z` is a deterministic function of the encoder outputs `μ` and `σ`, so gradients flow through them normally during backpropagation.
+
+</details>
+
+---
+
+➡️ **Full quiz with 4 questions:** [Knowledge Checks → Deep Learning Architectures](knowledge-checks.md#2-deep-learning-architectures)
+
+---
+
 ## Further Reading
 
 - **CNNs**

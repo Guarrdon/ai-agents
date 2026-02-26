@@ -302,6 +302,51 @@ Rule of thumb: train a model for **~20 tokens per parameter** for compute-optima
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** In scaled dot-product attention, why is the dot product divided by `√d_k`?
+
+<details>
+<summary>Answer</summary>
+
+When `d_k` is large, dot products between query and key vectors grow in variance proportionally to `d_k`. Very large values push the softmax into saturation regions where gradients are near zero, making training unstable. Dividing by `√d_k` normalises the scale, keeping dot products in a range where softmax has informative gradients.
+
+</details>
+
+---
+
+**Q2.** What is the key difference between BERT and GPT in terms of attention masking and intended use?
+
+<details>
+<summary>Answer</summary>
+
+- **BERT** uses **bidirectional attention** (encoder-only): each token can attend to all other tokens in both directions. Trained with Masked Language Modelling (predicting masked tokens). Suited for understanding tasks (classification, NER, QA).
+- **GPT** uses **causal (unidirectional) attention** (decoder-only): each token can only attend to tokens that came before it. Trained with next-token prediction. Suited for text generation.
+
+The causal mask in GPT is applied as `-inf` to future positions before the softmax, ensuring no information leaks from future tokens.
+
+</details>
+
+---
+
+**Q3.** A Transformer processes 512 tokens with 12 attention heads, each with `d_k = 64`. What is the shape of the full attention weight matrix for a single head, and what is the memory complexity with respect to sequence length?
+
+<details>
+<summary>Answer</summary>
+
+- **Shape:** `(512 × 512)` — computed as `softmax(Q · Kᵀ / √d_k)`, where Q and K each have shape `(512 × 64)`, so their product has shape `(512 × 512)`.
+- **Memory complexity:** O(n²) — the attention matrix grows quadratically with sequence length. This is the fundamental scalability bottleneck of standard self-attention, motivating alternatives like FlashAttention (recomputation instead of storage), sparse attention, and linear attention approximations.
+
+</details>
+
+---
+
+➡️ **Full quiz with 4 questions:** [Knowledge Checks → Model Architectures](knowledge-checks.md#3-model-architectures-transformers)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

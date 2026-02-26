@@ -597,6 +597,73 @@ print(f"Emissions: {emissions:.4f} kg CO₂")
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** You are auditing a loan approval algorithm and discover it has 95% accuracy for applicants in Group A but only 78% for Group B, even though both groups have similar credit profiles. Which type of bias is this, and what is a likely cause?
+
+<details>
+<summary>Answer</summary>
+
+This is **representation bias** (also called **disparate performance**). The likely cause: Group B is underrepresented in the training data, so the model had fewer examples to learn their patterns. With fewer samples, the model's learned decision boundary is less well-calibrated for Group B, leading to higher error rates.
+
+**Other possible causes:**
+- **Measurement bias:** Features used for Group B were measured differently or are less predictive for them
+- **Historical bias:** Training labels (past loan approval decisions) may themselves reflect historical discrimination — a model trained on biased decisions will perpetuate that bias
+
+**Mitigations:** Collect more representative training data, apply fairness constraints (e.g., equalized odds), conduct disaggregated evaluation before deployment, consider whether the feature set is appropriate for all groups.
+
+</details>
+
+---
+
+**Q2.** What is differential privacy, and what privacy guarantee does it provide in the context of ML model training?
+
+<details>
+<summary>Answer</summary>
+
+**Differential privacy (DP)** provides a mathematical guarantee that the inclusion or exclusion of any single training example has a bounded effect on the model's outputs. Formally, a training algorithm is ε-differentially private if for any two datasets D and D' differing by one record, and any output set S:
+
+```
+P[A(D) ∈ S] ≤ e^ε · P[A(D') ∈ S]
+```
+
+Smaller ε = stronger privacy (less information about any individual leaks).
+
+**In practice (DP-SGD):** Gaussian noise is added to per-sample gradients before aggregation, and gradients are clipped to bound sensitivity. This prevents **membership inference attacks** — an attacker observing the model cannot reliably determine whether a specific person was in the training data.
+
+**Trade-off:** Privacy (small ε) comes at the cost of model utility (accuracy decreases). Finding a good privacy-utility trade-off is an active research area.
+
+</details>
+
+---
+
+**Q3.** The EU AI Act classifies AI systems into four risk categories. What is the defining characteristic of a "high-risk" system, and give two examples?
+
+<details>
+<summary>Answer</summary>
+
+**High-risk systems** are AI applications where errors or misuse could cause significant harm to health, safety, or fundamental rights. They are subject to strict requirements including conformity assessments, risk management systems, data governance, transparency, and human oversight.
+
+**Examples:**
+- **Employment and HR** (CV screening, worker performance monitoring, hiring decisions)
+- **Credit scoring and insurance** (credit decisions, risk assessment for insurance)
+- **Law enforcement** (crime prediction tools, facial recognition for identification)
+- **Medical devices** (AI in clinical decision support, disease diagnosis)
+- **Critical infrastructure** (AI managing energy grids, water systems, transport)
+- **Educational assessment** (automated exam grading that affects educational opportunities)
+
+Systems deemed "unacceptable risk" (e.g., real-time biometric surveillance in public spaces, social scoring by government) are outright banned.
+
+</details>
+
+---
+
+➡️ **Full quiz with 2 questions:** [Knowledge Checks → AI Ethics](knowledge-checks.md#10-ai-ethics)
+
+---
+
 ## Further Reading
 
 - **Fairness and Machine Learning** — Barocas, S., Hardt, M., Narayanan, A. (2023). *Fairness and Machine Learning: Limitations and Opportunities.* [fairmlbook.org](https://fairmlbook.org)

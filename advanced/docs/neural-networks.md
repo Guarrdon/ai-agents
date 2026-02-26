@@ -298,6 +298,72 @@ print(f"Best params: {study.best_trial.params}")
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding before moving on. Attempt each question before revealing the answer.
+
+**Q1.** Without activation functions, what does a 10-layer neural network mathematically reduce to?
+
+<details>
+<summary>Answer</summary>
+
+It reduces to a **single linear transformation**. Stacking linear layers — `W₂(W₁x + b₁) + b₂` — is equivalent to `(W₂W₁)x + (W₂b₁ + b₂)`, which is still just `Wx + b`. The composition of linear functions is always linear, so depth provides no additional expressiveness without non-linear activations.
+
+</details>
+
+---
+
+**Q2.** Consider this training loop. What critical step is missing?
+
+```python
+for x, y in dataloader:
+    predictions = model(x)
+    loss = criterion(predictions, y)
+    loss.backward()
+    optimiser.step()
+```
+
+<details>
+<summary>Answer</summary>
+
+**`optimiser.zero_grad()` is missing** before `loss.backward()`.
+
+PyTorch accumulates gradients by default. Without clearing them each iteration, gradients from previous batches are summed into the current gradients, producing incorrect weight updates.
+
+```python
+for x, y in dataloader:
+    optimiser.zero_grad()   # ← clear accumulated gradients
+    predictions = model(x)
+    loss = criterion(predictions, y)
+    loss.backward()
+    optimiser.step()
+```
+
+</details>
+
+---
+
+**Q3.** Your model achieves 99% training accuracy but only 65% validation accuracy. Name two regularisation techniques you could apply and briefly explain the mechanism behind each.
+
+<details>
+<summary>Answer</summary>
+
+The model is **overfitting**. Two interventions:
+
+1. **Dropout** — randomly zeroes a fraction of activations during training (e.g., `nn.Dropout(p=0.3)`). Forces the network to learn distributed, redundant representations rather than relying on any single pathway. Disabled automatically during `model.eval()`.
+
+2. **Weight decay (L2 regularisation)** — penalises large weight magnitudes, discouraging the model from memorising training noise. Applied via the `weight_decay` parameter in AdamW: `AdamW(model.parameters(), lr=1e-3, weight_decay=1e-2)`.
+
+Other valid answers: reduce model capacity, add more training data, data augmentation, early stopping.
+
+</details>
+
+---
+
+➡️ **Full quiz with 5 questions:** [Knowledge Checks → Neural Networks](knowledge-checks.md#1-neural-networks)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

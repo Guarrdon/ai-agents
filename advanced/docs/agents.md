@@ -356,6 +356,69 @@ For production: use dedicated sandboxes (E2B, Modal, AWS Lambda) with network is
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** In the ReAct framework, what is the purpose of the "Thought" step before each action?
+
+<details>
+<summary>Answer</summary>
+
+The **Thought** step makes the agent's **reasoning explicit** before committing to an action. The agent produces a natural language reasoning trace (e.g., "I need to find the current stock price of AAPL. I should use the search tool.") before deciding what tool to call and with what arguments.
+
+Benefits:
+1. **Better planning:** Explicit reasoning helps the model select more appropriate actions
+2. **Error correction:** The model can catch mistakes in its previous thinking before acting
+3. **Interpretability:** Humans can inspect the reasoning chain to understand and debug agent behaviour
+4. **Grounding:** Forces the model to connect observations to the next action explicitly, rather than pattern-matching directly from input to output
+
+</details>
+
+---
+
+**Q2.** What are the four types of memory available to an LLM agent, and what is each suited for?
+
+<details>
+<summary>Answer</summary>
+
+| Memory Type | Location | Best For |
+|-------------|----------|----------|
+| **In-context / working memory** | Context window | Current task state, recent conversation, retrieved snippets |
+| **Episodic memory** | External vector store | Past conversations and task trajectories for cross-session recall |
+| **Semantic memory** | External vector store / knowledge graph | Domain facts, reference documentation, world knowledge |
+| **Procedural memory** | Model weights or system prompt | Task instructions, tool use patterns, reasoning strategies |
+
+**In-context** memory is immediate but bounded by the context window length. External memory (episodic and semantic) persists beyond the context window and across sessions; the agent retrieves relevant entries using semantic search. Procedural memory in weights is implicit; in the system prompt it is explicit and editable.
+
+</details>
+
+---
+
+**Q3.** Why is prompt injection a particular concern for agentic LLM systems compared to simple chatbots?
+
+<details>
+<summary>Answer</summary>
+
+Simple chatbots only produce text output — a successful injection may cause an inappropriate response, but the damage is limited. Agentic systems have **tool access** and can take real-world actions: send emails, execute code, call APIs, browse the web, write files, or interact with other services.
+
+A prompt injection in a retrieved document (e.g., a webpage the agent was browsing) could instruct the agent to:
+- Exfiltrate sensitive data from the conversation
+- Perform actions on behalf of an attacker (e.g., make a purchase, send an email)
+- Subvert the original task entirely
+
+Additionally, **multi-agent systems** can propagate injections: a compromised agent's output may become another agent's input, spreading the attack laterally.
+
+Mitigations: explicit content labelling (mark untrusted content), permission minimisation (agents only have the access they need), output validation, human-in-the-loop for high-impact actions.
+
+</details>
+
+---
+
+➡️ **Full quiz with 2 questions:** [Knowledge Checks → AI Agents](knowledge-checks.md#12-ai-agents)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

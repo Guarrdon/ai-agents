@@ -494,6 +494,55 @@ Modern generative AI is built entirely on foundational neural network principles
 
 ---
 
+## 🧠 Knowledge Check
+
+Test your understanding. Attempt each question before revealing the answer.
+
+**Q1.** In a diffusion model, what is the role of the forward process vs. the reverse process?
+
+<details>
+<summary>Answer</summary>
+
+- **Forward process (noising):** A fixed, non-learned Markov chain that gradually adds Gaussian noise to a real data sample over T timesteps (e.g., T=1000) until the sample becomes approximately pure Gaussian noise. This process is analytically tractable.
+
+- **Reverse process (denoising):** The learned component. Starting from pure noise, the model iteratively predicts and subtracts the noise added at each timestep to recover a coherent sample. This is the generative direction — what the neural network (typically a U-Net) learns.
+
+Generation at inference time runs only the reverse process: sample pure noise, then denoise T times.
+
+</details>
+
+---
+
+**Q2.** What is the key computational advantage of Latent Diffusion Models (like Stable Diffusion) over pixel-space diffusion models?
+
+<details>
+<summary>Answer</summary>
+
+Latent Diffusion Models perform the diffusion process in a **compressed latent space** encoded by a pretrained VAE, rather than directly in pixel space. A 512×512 image is compressed to a ~64×64×4 latent representation — about 8× smaller in each spatial dimension.
+
+This means the U-Net denoising network operates on much smaller tensors, reducing training and inference compute by orders of magnitude compared to pixel-space diffusion. The quality loss from the VAE compression is minimal for most applications. The VAE decoder then maps the denoised latent back to the full-resolution image.
+
+</details>
+
+---
+
+**Q3.** How does CLIP enable zero-shot image classification without task-specific training data?
+
+<details>
+<summary>Answer</summary>
+
+CLIP trains an image encoder and a text encoder jointly using a contrastive objective: for each image-text pair in a training batch, their embeddings should be similar (high cosine similarity); all non-matching pairs should be dissimilar.
+
+For zero-shot classification: given a new image and candidate class labels, CLIP formats each label as a text template (e.g., "a photo of a {class}"), encodes the image and all text descriptions, and assigns the class whose text embedding has the highest cosine similarity to the image embedding. No task-specific training data or fine-tuning is required — the shared embedding space enables this direct comparison.
+
+</details>
+
+---
+
+➡️ **Full quiz with 3 questions:** [Knowledge Checks → Generative AI](knowledge-checks.md#5-generative-ai)
+
+---
+
 ## Further Reading
 
 | Resource | Type | Notes |

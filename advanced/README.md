@@ -190,8 +190,22 @@ Every topic document in this section follows a consistent layout:
 | **Prerequisites** | Specific prior knowledge assumed |
 | **Core content** | Technical deep-dive with code and math |
 | **Key concepts summary** | Quick-reference table of terms |
+| **🧠 Knowledge check** | Comprehension questions with expandable answers |
 | **Further reading** | Papers, docs, and tutorials to go deeper |
 | **Navigation footer** | Links to previous and next topics |
+
+---
+
+## 🧠 Knowledge Checks
+
+Each topic document includes an inline **Knowledge Check** section with 3 comprehension questions and expandable answers. For a consolidated view across all 13 topics, including cross-topic questions and a full assessment:
+
+**[→ All Knowledge Checks](docs/knowledge-checks.md)**
+
+The knowledge checks cover:
+- Conceptual understanding (multiple choice, short answer)
+- Code analysis questions (spot the bug, predict output)
+- Applied reasoning (design choices, failure modes)
 
 ---
 
