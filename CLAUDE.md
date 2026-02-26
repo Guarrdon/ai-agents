@@ -69,7 +69,7 @@ Populate the advanced AI section frontend with the authored content from issues 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `f/issue_18fecdeb651e/compute-001`
+- **Branch:** `f/issue_18fecdeb651e/compute-002`
 - **Base:** `main`
 
 ### Commit your work

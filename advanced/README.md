@@ -29,17 +29,19 @@ If you can check most of the boxes above, you're in the right place!
 The topics below are ordered to build on each other. We recommend following them in sequence, though each document is also designed to stand alone as a reference.
 
 ```
-1. Neural Networks          → The foundation of modern deep learning
-2. Model Architectures      → Transformers, attention, SSMs, MoE
-3. Large Language Models    → Scaling laws, training pipeline, tokenisation, inference
-4. Generative AI            → Diffusion models, GANs, VAEs, multimodal, text-to-image
-5. Prompt Engineering       → Zero-shot, CoT, structured output, ReAct, evaluation
-6. Training Techniques      → Optimisation, distributed training, precision
-7. Fine-Tuning              → PEFT, LoRA, instruction tuning, RLHF
-8. Evaluation               → Benchmarks, metrics, LLM-as-judge
-9. Retrieval-Augmented Gen  → RAG pipelines, indexing, re-ranking
-10. AI Agents               → Tool use, planning, memory, multi-agent
-11. Safety & Alignment      → RLHF, interpretability, alignment research
+ 1. Neural Networks           → The foundation of modern deep learning
+ 2. Deep Learning Architectures → CNNs, RNNs, LSTMs, GANs, VAEs
+ 3. Model Architectures       → Transformers, attention, SSMs, MoE
+ 4. Large Language Models     → Scaling laws, tokenisation, RLHF, inference
+ 5. Generative AI             → Diffusion, CLIP, VLMs, text-to-image/video
+ 6. Prompt Engineering        → Zero-shot, CoT, ReAct, structured output
+ 7. Training Techniques       → Transfer learning, optimisation, distributed training
+ 8. Fine-Tuning               → PEFT, LoRA, instruction tuning, DPO
+ 9. Evaluation                → Benchmarks, metrics, LLM-as-judge
+10. AI Ethics                 → Fairness, bias, explainability, responsible AI
+11. Retrieval-Augmented Gen   → RAG pipelines, indexing, re-ranking
+12. AI Agents                 → Tool use, planning, memory, multi-agent
+13. Safety & Alignment        → RLHF, interpretability, alignment research
 ```
 
 ---
@@ -55,7 +57,16 @@ The mathematical and computational foundations of deep learning — perceptrons,
 
 ---
 
-### 2. Model Architectures
+### 2. Deep Learning Architectures
+**File:** [docs/deep-learning-architectures.md](docs/deep-learning-architectures.md)
+
+A comprehensive tour of deep learning architectures beyond the Transformer — convolutional networks for vision, recurrent networks for sequences, and generative models.
+
+> **Covers:** CNNs (LeNet → ResNet), RNNs, LSTMs, GRUs, bidirectional RNNs, GANs (DCGAN, WGAN, StyleGAN), VAEs (ELBO, reparameterisation), VQ-VAE
+
+---
+
+### 3. Model Architectures
 **File:** [docs/model-architectures.md](docs/model-architectures.md)
 
 A deep dive into the Transformer architecture and its modern variants — multi-head attention, position encodings, mixture-of-experts, state space models, and the scaling laws that govern their behaviour.
@@ -64,43 +75,43 @@ A deep dive into the Transformer architecture and its modern variants — multi-
 
 ---
 
-### 3. Large Language Models
+### 4. Large Language Models
 **File:** [docs/large-language-models.md](docs/large-language-models.md)
 
-What makes a language model large, how LLMs are built and trained, and how they are deployed — from tokenisation and pretraining through RLHF alignment to quantised inference.
+What makes language models "large" and how they are built — scaling laws, tokenisation, the full training pipeline from pretraining through alignment, context windows, and inference optimisation.
 
-> **Covers:** Scaling laws, Chinchilla, BPE tokenisation, causal language modelling, RLHF, DPO, context windows, KV caching, quantisation, speculative decoding, LLM landscape
+> **Covers:** Scaling laws (Chinchilla), BPE/WordPiece/SentencePiece, causal LM pretraining, RLHF, DPO, context windows, KV caching, quantisation, speculative decoding
 
 ---
 
-### 4. Generative AI
+### 5. Generative AI
 **File:** [docs/generative-ai.md](docs/generative-ai.md)
 
-The major families of generative models — how they learn to produce images, text, audio, and video — including diffusion models, GANs, VAEs, and multimodal architectures.
+The major families of generative models — from VAEs and GANs to modern diffusion models, CLIP, and multimodal vision-language systems.
 
-> **Covers:** VAEs, reparameterisation trick, GANs, mode collapse, diffusion models (DDPM/DDIM), latent diffusion, CLIP, Stable Diffusion, text-to-image, VLMs, multimodal models, text-to-video
+> **Covers:** VAEs, VQ-VAE, GANs (DCGAN, StyleGAN, CycleGAN), diffusion models (DDPM/DDIM), latent diffusion (Stable Diffusion), CLIP, text-to-image, VLMs, Sora
 
 ---
 
-### 5. Prompt Engineering
+### 6. Prompt Engineering
 **File:** [docs/prompt-engineering.md](docs/prompt-engineering.md)
 
-The art and science of designing inputs to elicit desired LLM behaviour — from basic zero-shot prompting through advanced reasoning and agentic techniques.
+Designing prompts to elicit desired behaviour from LLMs — from basic zero-shot and few-shot prompting to chain-of-thought, ReAct, self-consistency, and structured output generation.
 
-> **Covers:** Zero-shot, few-shot, chain-of-thought, self-consistency, system prompts, structured output, ReAct, prompt injection defence, context management, prompt evaluation
+> **Covers:** Zero-shot, few-shot, chain-of-thought, self-consistency, system prompts, JSON/schema output, ReAct, prompt injection, context management, LLM-as-judge
 
 ---
 
-### 6. Training Techniques
+### 7. Training Techniques
 **File:** [docs/training-techniques.md](docs/training-techniques.md)
 
-Practical and theoretical techniques for training large models — advanced optimisers, learning rate schedules, distributed training strategies, mixed-precision, and training stability.
+Practical and theoretical techniques for training large models — transfer learning, advanced optimisers, learning rate schedules, distributed training strategies, mixed-precision, and training stability.
 
-> **Covers:** AdamW, Lion, WSD schedules, data pipelines, FSDP, tensor/pipeline parallelism, FP8 training, loss spike debugging, μP parametrisation
+> **Covers:** Transfer learning, progressive unfreezing, AdamW, Lion, WSD schedules, data pipelines, FSDP, tensor/pipeline parallelism, FP8 training, loss spike debugging, μP parametrisation
 
 ---
 
-### 7. Fine-Tuning
+### 8. Fine-Tuning
 **File:** [docs/fine-tuning.md](docs/fine-tuning.md)
 
 Adapting pre-trained models to specific tasks — full fine-tuning, parameter-efficient methods (LoRA, DoRA, GaLore), instruction tuning, and alignment fine-tuning with DPO and its variants.
@@ -109,16 +120,25 @@ Adapting pre-trained models to specific tasks — full fine-tuning, parameter-ef
 
 ---
 
-### 8. Evaluation
+### 9. Evaluation
 **File:** [docs/evaluation.md](docs/evaluation.md)
 
-Rigorous evaluation of language models — standard benchmarks, custom metrics, LLM-as-judge frameworks, human evaluation, and detecting data contamination.
+Rigorous evaluation of language models — standard benchmarks, classical ML metrics, LLM-specific metrics, LLM-as-judge frameworks, human evaluation, and detecting data contamination.
 
-> **Covers:** MMLU, HELM, GPQA, LLM-as-judge bias, calibration/ECE, contamination detection, self-consistency, agent evaluation
+> **Covers:** Classification/regression metrics, BLEU/ROUGE/BERTScore, MMLU, HELM, GPQA, LLM-as-judge bias, calibration/ECE, contamination detection, agent evaluation
 
 ---
 
-### 9. Retrieval-Augmented Generation (RAG)
+### 10. AI Ethics
+**File:** [docs/ethics.md](docs/ethics.md)
+
+Responsible AI development — fairness, bias, explainability, privacy, safety, and the regulatory landscape. Essential reading for anyone deploying AI systems in the real world.
+
+> **Covers:** Algorithmic fairness, bias sources and mitigation, demographic parity, equalized odds, SHAP, LIME, GDPR/EU AI Act, differential privacy, carbon footprint, AI governance
+
+---
+
+### 11. Retrieval-Augmented Generation (RAG)
 **File:** [docs/rag.md](docs/rag.md)
 
 Building production RAG systems — dense and sparse retrieval, re-ranking, advanced architectures (RAPTOR, GraphRAG, ColPali), and corrective/self-RAG patterns.
@@ -127,7 +147,7 @@ Building production RAG systems — dense and sparse retrieval, re-ranking, adva
 
 ---
 
-### 10. AI Agents
+### 12. AI Agents
 **File:** [docs/agents.md](docs/agents.md)
 
 LLM-based autonomous agents — tool use, planning strategies, memory systems, multi-agent coordination, and production considerations.
@@ -136,7 +156,7 @@ LLM-based autonomous agents — tool use, planning strategies, memory systems, m
 
 ---
 
-### 11. Safety & Alignment
+### 13. Safety & Alignment
 **File:** [docs/safety-alignment.md](docs/safety-alignment.md)
 
 The technical foundations of AI safety and alignment — RLHF, Constitutional AI, mechanistic interpretability, red-teaming, and scalable oversight research.
@@ -152,8 +172,8 @@ The following documents provide additional depth and alternative perspectives on
 | Document | Description |
 |----------|-------------|
 | [Neural Networks — In Depth](docs/01-neural-networks.md) | Extended treatment of neural network fundamentals with more implementation detail |
-| [Deep Learning Architectures](docs/02-deep-learning-architectures.md) | CNNs, RNNs, LSTMs, GANs, and VAEs — architectures beyond Transformers |
-| [AI Ethics, Safety, Bias, and Responsible AI Development](docs/06-ai-ethics.md) | Comprehensive guide to fairness, bias, explainability, and regulatory landscape |
+| [Deep Learning Architectures — In Depth](docs/02-deep-learning-architectures.md) | The same content as Topic 2, formatted as a standalone supplementary reference |
+| [AI Ethics — In Depth](docs/06-ai-ethics.md) | The same content as Topic 10, formatted as a standalone supplementary reference |
 | [Advanced AI Training Techniques](docs/07-training-techniques.md) | Transfer learning, RLHF pipeline, multi-task learning, and curriculum learning |
 | [Model Evaluation Metrics](docs/08-model-evaluation.md) | In-depth coverage of classification, regression, and language model evaluation metrics |
 

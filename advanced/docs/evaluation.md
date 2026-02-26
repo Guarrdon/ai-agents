@@ -8,6 +8,9 @@
 
 By the end of this document you will be able to:
 
+- Compute and interpret classification metrics: accuracy, precision, recall, F1, AUC-ROC, and MCC
+- Apply regression evaluation metrics (MAE, MSE, RMSE, R²)
+- Evaluate language model outputs using perplexity, BLEU, ROUGE, and BERTScore
 - Describe the most widely used LLM benchmarks and what they measure
 - Identify the limitations and biases in automated evaluation
 - Explain the LLM-as-judge approach and its known failure modes
@@ -256,6 +259,110 @@ SxS is more reliable than absolute ratings for detecting small differences.
 | **ECE** | Expected Calibration Error — quantifies miscalibration |
 | **Contamination** | Training data includes test examples; inflates scores |
 | **RAGAS** | Framework for evaluating RAG pipeline quality |
+| **F1 score** | Harmonic mean of precision and recall |
+| **AUC-ROC** | Area under ROC curve; probability a positive outscores a negative |
+| **Perplexity** | Exponentiated cross-entropy — how well a model predicts held-out text |
+| **BLEU** | N-gram precision metric for text generation (primarily MT) |
+| **ROUGE** | Recall-oriented n-gram metric for summarisation |
+| **BERTScore** | Semantic similarity using contextual embeddings |
+
+---
+
+## 9. Classical ML Metrics
+
+The metrics above focus on LLM evaluation. This section covers foundational metrics applicable to classification, regression, and generation tasks — essential for evaluating traditional and fine-tuned models.
+
+### 9.1 Classification Metrics
+
+All standard classification metrics derive from the **confusion matrix**:
+
+|  | Predicted Positive | Predicted Negative |
+|---|---|---|
+| **Actual Positive** | True Positive (TP) | False Negative (FN) |
+| **Actual Negative** | False Positive (FP) | True Negative (TN) |
+
+```python
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score
+import numpy as np
+
+y_true = np.array([1, 1, 1, 0, 0, 0, 1, 0, 1, 0])
+y_pred = np.array([1, 1, 0, 0, 0, 1, 1, 0, 0, 0])
+
+tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+precision = precision_score(y_true, y_pred)
+recall    = recall_score(y_true, y_pred)
+f1        = f1_score(y_true, y_pred)
+```
+
+**Key formulas:**
+
+```
+Accuracy  = (TP + TN) / (TP + TN + FP + FN)
+Precision = TP / (TP + FP)   — "of all predicted positives, how many were correct?"
+Recall    = TP / (TP + FN)   — "of all actual positives, how many did we find?"
+F1        = 2 × (Precision × Recall) / (Precision + Recall)
+```
+
+**AUC-ROC** summarises classifier performance across all thresholds: `AUC = 1.0` is perfect; `AUC = 0.5` is random. Use AUC-PR instead when class imbalance is severe.
+
+**Matthews Correlation Coefficient (MCC):** More balanced than accuracy on imbalanced datasets:
+```
+MCC = (TP×TN - FP×FN) / √((TP+FP)(TP+FN)(TN+FP)(TN+FN))
+```
+
+### 9.2 Regression Metrics
+
+| Metric | Formula | Notes |
+|--------|---------|-------|
+| **MAE** | `(1/n) Σ |y - ŷ|` | Interpretable; robust to outliers |
+| **MSE** | `(1/n) Σ (y - ŷ)²` | Penalises large errors more |
+| **RMSE** | `√MSE` | Same units as target |
+| **R²** | `1 - SS_res/SS_tot` | Fraction of variance explained; 1 = perfect |
+
+```python
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+mae  = mean_absolute_error(y_true, y_pred)
+rmse = mean_squared_error(y_true, y_pred, squared=False)
+r2   = r2_score(y_true, y_pred)
+```
+
+### 9.3 Language Generation Metrics
+
+**Perplexity:** How well a language model predicts held-out text. Lower is better.
+```
+Perplexity = exp(-1/N Σ log P(w_i | context))
+```
+
+**BLEU:** N-gram precision between hypothesis and reference (common for machine translation):
+```python
+from nltk.translate.bleu_score import corpus_bleu
+bleu4 = corpus_bleu(references, hypotheses)
+```
+Limitation: Only measures surface form; misses paraphrases.
+
+**ROUGE:** Recall-oriented metric for summarisation (ROUGE-1, ROUGE-2, ROUGE-L):
+```python
+from rouge_score import rouge_scorer
+scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeL"])
+scores = scorer.score(reference, hypothesis)
+```
+
+**BERTScore:** Semantic similarity via contextual embeddings — more correlated with human judgements than BLEU/ROUGE:
+```python
+from bert_score import score as bertscore
+P, R, F1 = bertscore(hypotheses, references, lang="en", model_type="roberta-large")
+```
+
+### 9.4 Evaluation Protocol
+
+| Concern | Best Practice |
+|---------|-------------|
+| **Data splits** | Train / Validation / Test — never tune on test set |
+| **Cross-validation** | Use stratified K-fold for imbalanced datasets |
+| **Data leakage** | Fit preprocessors on training data only |
+| **Statistical significance** | McNemar's test or bootstrap CIs for model comparisons |
+| **Sliced evaluation** | Report metrics separately for meaningful subgroups |
 
 ---
 
@@ -269,7 +376,10 @@ SxS is more reliable than absolute ratings for detecting small differences.
 | [RAGAS](https://docs.ragas.io/) | Documentation | RAG evaluation framework |
 | [Contamination survey](https://arxiv.org/abs/2310.18018) | Paper | Systematic review of benchmark contamination |
 | [Calibration paper](https://arxiv.org/abs/1706.04599) | Paper | Guo et al. on neural network calibration |
+| [BERTScore paper](https://arxiv.org/abs/1904.09675) | Paper | Zhang et al. 2019 |
+| [BLEU paper](https://aclanthology.org/P02-1040/) | Paper | Papineni et al. 2002 |
+| [Model Evaluation Metrics (In Depth)](08-model-evaluation.md) | Supplementary | Extended coverage of all metrics in this section |
 
 ---
 
-*Navigation: [← Fine-Tuning](fine-tuning.md) · [Advanced Home](../README.md) · [Next: RAG →](rag.md)*
+*Navigation: [← Fine-Tuning](fine-tuning.md) · [Advanced Home](../README.md) · [Next: AI Ethics →](ethics.md)*

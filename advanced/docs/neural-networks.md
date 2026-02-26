@@ -229,7 +229,63 @@ Penalises large weights, built into the `AdamW` optimiser via the `weight_decay`
 
 ---
 
-## 8. Key Concepts Summary
+## 8. Hyperparameter Tuning
+
+Hyperparameters are configuration choices not learned from data: learning rate, batch size, number of layers, neurons per layer, dropout rate, etc.
+
+### Key Hyperparameters and Sensible Defaults
+
+| Hyperparameter | Typical Range | Sensitivity |
+|---|---|---|
+| **Learning rate** | `1e-5` to `1e-1` | Very high — most critical |
+| **Batch size** | 32–512 | Medium; scale LR linearly with batch size |
+| **Number of hidden layers** | 2–6 (tabular), 50–1000 (ResNets) | High |
+| **Neurons per layer** | 64–2048 | Medium |
+| **Dropout rate** | 0.1–0.5 | Medium |
+| **Weight decay** | `1e-5` to `1e-2` | Low |
+
+### Search Strategies
+
+**Random search** is often the most practical starting point — sample hyperparameter values randomly from defined distributions:
+
+```python
+import numpy as np
+
+search_space = {
+    "lr":         lambda: 10 ** np.random.uniform(-5, -1),
+    "batch_size": lambda: int(2 ** np.random.randint(5, 10)),  # 32–512
+    "hidden_dim": lambda: int(2 ** np.random.randint(6, 11)),  # 64–1024
+    "dropout":    lambda: np.random.uniform(0.1, 0.5),
+}
+configs = [{k: v() for k, v in search_space.items()} for _ in range(20)]
+```
+
+**Bayesian optimisation** (via [Optuna](https://optuna.org)) builds a probabilistic model of the hyperparameter-performance mapping and picks the next configuration more intelligently:
+
+```python
+import optuna
+
+def objective(trial):
+    lr = trial.suggest_float("lr", 1e-5, 1e-1, log=True)
+    dropout = trial.suggest_float("dropout", 0.1, 0.5)
+    hidden_dim = trial.suggest_categorical("hidden_dim", [128, 256, 512, 1024])
+    model = build_model(hidden_dim=hidden_dim, dropout=dropout)
+    return train_and_evaluate(model, lr=lr, epochs=10)  # Returns validation accuracy
+
+study = optuna.create_study(direction="maximize")
+study.optimize(objective, n_trials=50)
+print(f"Best params: {study.best_trial.params}")
+```
+
+### Validation Strategy
+
+- Use a **held-out validation set** for hyperparameter tuning (never the test set)
+- Use **k-fold cross-validation** for small datasets
+- Apply **early stopping** based on validation loss to avoid overfitting
+
+---
+
+## 9. Key Concepts Summary
 
 | Concept | One-line description |
 |---------|---------------------|
@@ -254,4 +310,4 @@ Penalises large weights, built into the `AdamW` optimiser via the `weight_decay`
 
 ---
 
-*Navigation: [← Beginner Section](../../beginner/README.md) · [Advanced Home](../README.md) · [Next: Model Architectures →](model-architectures.md)*
+*Navigation: [← Beginner Section](../../beginner/README.md) · [Advanced Home](../README.md) · [Next: Deep Learning Architectures →](deep-learning-architectures.md)*
