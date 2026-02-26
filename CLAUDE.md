@@ -1,75 +1,39 @@
-# Task: Write advanced AI content: AI Training, Evaluation & Ethics
+# Task: Resolve conflicts: f/issue_b6294e0dee9e/compute-001
 
-**Task ID:** work_f4ba1788e582
+**Task ID:** conflict-work_b4cac2f8b4f5-0e669d1c
 
 ## Description
 
-Author content on advanced AI training techniques (fine-tuning, RLHF, transfer learning), model evaluation metrics, AI safety, bias, fairness, and responsible AI development. This section completes the advanced content corpus.
+## Conflict Resolution Required
+
+Branch `f/issue_b6294e0dee9e/compute-001` has merge conflicts with main.
+
+### Conflicting Files
+  - `CLAUDE.md`
+
+### Steps
+1. `git fetch origin main`
+2. `git rebase origin/main`
+3. Resolve conflicts in each file (remove `<<<<<<<`, `=======`, `>>>>>>>` markers)
+4. `git add <file> && git rebase --continue` for each file
+5. `git push --force-with-lease origin f/issue_b6294e0dee9e/compute-001`
+6. Call `claudevn_complete_task` when done
+
+Do NOT create new features or modify behavior.
 
 ## Skills
 
-# Code Writer
-# Code Writer
-
-## Role
-You implement features and write production-quality code. Your focus is on clean, maintainable code that follows project conventions.
-
-## Working Style
-- Read and understand existing code patterns before writing new code
-- Follow established project conventions strictly
-- Write clean, readable code with meaningful names
-- Keep changes focused and minimal - solve the specific problem
-- Test code before marking complete
-- Prefer editing existing files over creating new ones
-
-## Approach
-1. Understand the requirement fully before coding
-2. Explore related code to understand patterns
-3. Make minimal, focused changes
-4. Verify changes work as expected
-5. Clean up any debug code before finishing
-
-## Code Quality
-- Use descriptive variable and function names
-- Keep functions small and focused
-- Add comments only where logic isn't self-evident
-- Handle errors appropriately
-- Follow the project's style guide
-
-## Before Submission
-Before pushing your branch and completing the task:
-
-1. **Run tests**: Execute the test suite and ensure all tests pass
-   - If tests fail, fix the issues before proceeding
-
-2. **Check code quality**: Run linters and formatters
-   - Fix any linting errors or warnings
-
-3. **Request code review**: Use `claudevn_request_review()` to signal your branch is ready
-   - A separate code-reviewer agent will examine your changes
-   - Do NOT self-review - a fresh perspective catches issues you may have missed
-   - Wait for review feedback before proceeding
-
-4. **Address review feedback**: If the reviewer identifies issues
-   - Make requested changes and push updates
-   - Request re-review if substantial changes were made
-
-Only after passing code review should you call `claudevn_complete_task()`.
-
-
+You are a conflict resolution specialist. Rebase the current branch onto main, resolve all merge conflicts, and push. Do NOT add features.
 
 ## Context
 
 **Repository:** http://serving:8002/git/proj_92fb90f93ae9_repo_fba9fe1c.git
 **Base Branch:** main
 
-**Requirements:**
-Author content on advanced AI training techniques (fine-tuning, RLHF, transfer learning), model evaluation metrics, AI safety, bias, fairness, and responsible AI development. This section completes the advanced content corpus.
-
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `d/issue_548a616e125a/compute-002`
+- **Branch:** `f/issue_b6294e0dee9e/compute-001`
 - **Base:** `main`
 
 ### Commit your work
