@@ -1,12 +1,12 @@
-# Task: Resolve conflicts: f/issue_b6294e0dee9e/compute-001
+# Task: Resolve conflicts: d/issue_34479978aabb/compute-002
 
-**Task ID:** conflict-work_b4cac2f8b4f5-0e669d1c
+**Task ID:** conflict-work_b68b5103c26c-6a153c14
 
 ## Description
 
 ## Conflict Resolution Required
 
-Branch `f/issue_b6294e0dee9e/compute-001` has merge conflicts with main.
+Branch `d/issue_34479978aabb/compute-002` has merge conflicts with main.
 
 ### Conflicting Files
   - `CLAUDE.md`
@@ -16,7 +16,7 @@ Branch `f/issue_b6294e0dee9e/compute-001` has merge conflicts with main.
 2. `git rebase origin/main`
 3. Resolve conflicts in each file (remove `<<<<<<<`, `=======`, `>>>>>>>` markers)
 4. `git add <file> && git rebase --continue` for each file
-5. `git push --force-with-lease origin f/issue_b6294e0dee9e/compute-001`
+5. `git push --force-with-lease origin d/issue_34479978aabb/compute-002`
 6. Call `claudevn_complete_task` when done
 
 Do NOT create new features or modify behavior.
@@ -33,7 +33,7 @@ You are a conflict resolution specialist. Rebase the current branch onto main, r
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `f/issue_b6294e0dee9e/compute-001`
+- **Branch:** `d/issue_34479978aabb/compute-002`
 - **Base:** `main`
 
 ### Commit your work
