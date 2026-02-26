@@ -1,10 +1,10 @@
-# Task: Create docs/how-to-use-ai.md — Practical AI usage guide for everyday people
+# Task: Create beginner folder and migrate existing AI description markdown content
 
-**Task ID:** work_684ad6c3ef19
+**Task ID:** work_a519d2d0fc27
 
 ## Description
 
-Write a markdown file at docs/how-to-use-ai.md that explains how the average, non-technical person can start using AI tools in their daily life. Use friendly, encouraging language. Cover: 3-5 beginner-friendly AI tools (e.g., ChatGPT, Google Photos, voice assistants), step-by-step examples of common tasks (ask a question, get a recipe, translate text), tips for getting good results (be specific when asking), and a short section on staying safe (don't share personal info). Assume zero prior knowledge.
+Create a top-level `beginner/` folder and move the existing AI description markdown folder/files into it. This restructures the current content to be explicitly targeted at beginners, establishing the new two-tier directory hierarchy. Update any internal links or references that may break due to the path change.
 
 ## Skills
 
@@ -64,12 +64,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-Write a markdown file at docs/how-to-use-ai.md that explains how the average, non-technical person can start using AI tools in their daily life. Use friendly, encouraging language. Cover: 3-5 beginner-friendly AI tools (e.g., ChatGPT, Google Photos, voice assistants), step-by-step examples of common tasks (ask a question, get a recipe, translate text), tips for getting good results (be specific when asking), and a short section on staying safe (don't share personal info). Assume zero prior knowledge.
+Create a top-level `beginner/` folder and move the existing AI description markdown folder/files into it. This restructures the current content to be explicitly targeted at beginners, establishing the new two-tier directory hierarchy. Update any internal links or references that may break due to the path change.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `d/issue_efad6be88f67/compute-002`
+- **Branch:** `r/issue_e9c6ba72aeab/compute-002`
 - **Base:** `main`
 
 ### Commit your work
