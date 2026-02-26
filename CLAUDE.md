@@ -1,10 +1,10 @@
-# Task: Define content outline and structure for advanced AI section
+# Task: Write advanced AI content: AI Training, Evaluation & Ethics
 
-**Task ID:** work_b57ac9e2d6b4
+**Task ID:** work_f4ba1788e582
 
 ## Description
 
-Audit the existing beginner AI section to understand its structure, tone, and format. Define the outline for the advanced section, covering topics such as deep learning architectures, neural networks, transformers, large language models, reinforcement learning, and AI ethics at depth. Identify which topics require diagrams or interactive elements.
+Author content on advanced AI training techniques (fine-tuning, RLHF, transfer learning), model evaluation metrics, AI safety, bias, fairness, and responsible AI development. This section completes the advanced content corpus.
 
 ## Skills
 
@@ -64,12 +64,12 @@ Only after passing code review should you call `claudevn_complete_task()`.
 **Base Branch:** main
 
 **Requirements:**
-Audit the existing beginner AI section to understand its structure, tone, and format. Define the outline for the advanced section, covering topics such as deep learning architectures, neural networks, transformers, large language models, reinforcement learning, and AI ethics at depth. Identify which topics require diagrams or interactive elements.
+Author content on advanced AI training techniques (fine-tuning, RLHF, transfer learning), model evaluation metrics, AI safety, bias, fairness, and responsible AI development. This section completes the advanced content corpus.
 
 ## Git Workflow
 
 You are working on a Git branch. Follow these steps:
-- **Branch:** `d/issue_40fcd1f62b00/compute-002`
+- **Branch:** `d/issue_548a616e125a/compute-002`
 - **Base:** `main`
 
 ### Commit your work
