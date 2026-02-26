@@ -1,8 +1,6 @@
-# What Is Artificial Intelligence?
-
 > 📍 [Home](../../README.md) › [Beginner](../README.md) › What Is Artificial Intelligence?
 
----
+# What Is Artificial Intelligence?
 
 ## In One Sentence
 
