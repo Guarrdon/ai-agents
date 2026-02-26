@@ -8,6 +8,7 @@
 
 By the end of this document you will be able to:
 
+- Apply transfer learning strategies including feature extraction and progressive unfreezing
 - Compare modern optimisers (AdamW, Lion, Muon) and their trade-offs
 - Design a learning rate schedule appropriate for LLM pre-training
 - Explain the different parallelism strategies for distributed training
@@ -26,7 +27,65 @@ By the end of this document you will be able to:
 
 ---
 
-## 1. Optimisers
+## 1. Transfer Learning
+
+Transfer learning exploits the fact that representations learned on one task often generalise to related tasks. Rather than training from a random initialisation, you begin with a model that has already developed useful internal representations and adapt them to your target domain.
+
+### Feature Extraction vs Fine-Tuning
+
+| Strategy | Description | When to Use |
+|---|---|---|
+| **Feature extraction** | Freeze all pre-trained layers; train only the new head | Very small datasets; target task similar to source |
+| **Fine-tuning (partial)** | Unfreeze top N layers; train head + those layers | Moderate dataset; target task somewhat different |
+| **Fine-tuning (full)** | Unfreeze all layers; train end-to-end | Large dataset; significant domain shift |
+
+### Feature Extraction Example (PyTorch)
+
+```python
+import torchvision.models as models
+import torch.nn as nn
+
+# Load pre-trained ResNet-50
+backbone = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V2)
+
+# Freeze all parameters
+for param in backbone.parameters():
+    param.requires_grad = False
+
+# Replace the classification head for a 10-class task
+num_features = backbone.fc.in_features
+backbone.fc = nn.Linear(num_features, 10)
+# Only backbone.fc parameters receive gradients
+```
+
+### Progressive Unfreezing
+
+Unfreeze layers progressively from the top downward, allowing the model to adapt without destroying early representations:
+
+```python
+def unfreeze_top_n_layers(model: nn.Module, n: int) -> None:
+    layer_groups = [model.layer4, model.layer3, model.layer2, model.layer1]
+    for param in model.parameters():
+        param.requires_grad = False
+    for param in model.fc.parameters():
+        param.requires_grad = True
+    for group in layer_groups[:n]:
+        for param in group.parameters():
+            param.requires_grad = True
+```
+
+**Discriminative learning rates:** Use lower LRs for earlier (general) layers, higher for later (task-specific) layers.
+
+### Catastrophic Forgetting
+
+Fine-tuning can override pre-trained knowledge. Mitigations:
+- **Elastic Weight Consolidation (EWC):** Penalises changes to weights important for the original task: `L_total = L_task + λ Σ F_i (θ_i - θ*_i)²`
+- **Learning Rate Warm-up:** Gradually increase LR from near-zero to avoid large destructive updates
+- **Early Stopping:** Monitor validation performance and stop when it plateaus
+
+---
+
+## 2. Optimisers
 
 ### AdamW
 
@@ -65,7 +124,7 @@ Muon (MomentUm Orthogonalised by Newton-schulz) orthogonalises gradient updates 
 
 ---
 
-## 2. Learning Rate Schedules
+## 3. Learning Rate Schedules
 
 ### Warmup + Cosine Decay
 
@@ -94,7 +153,7 @@ Phase 3: Sharp cosine/linear decay
 
 ---
 
-## 3. Data Pipeline
+## 4. Data Pipeline
 
 ### Sequence Packing
 
@@ -123,7 +182,7 @@ Mix data from different domains (web, code, books, math) with carefully tuned we
 
 ---
 
-## 4. Distributed Training
+## 5. Distributed Training
 
 Modern LLMs exceed the memory of a single GPU. Distributed training spreads computation across many devices.
 
@@ -171,7 +230,7 @@ Combines DP + TP + PP for the largest models (GPT-4, Llama-3 405B). Each dimensi
 
 ---
 
-## 5. Mixed Precision Training
+## 6. Mixed Precision Training
 
 Training in lower precision reduces memory and increases throughput.
 
@@ -206,7 +265,7 @@ FP8 (e.g., on H100 GPUs) halves memory further. Requires:
 
 ---
 
-## 6. Gradient Checkpointing
+## 7. Gradient Checkpointing
 
 **Problem:** Storing all intermediate activations for backprop is memory-intensive.
 **Solution:** Recompute activations during the backward pass instead of storing them.
@@ -228,7 +287,7 @@ class CheckpointedTransformerBlock(nn.Module):
 
 ---
 
-## 7. Gradient Accumulation
+## 8. Gradient Accumulation
 
 Simulates large batch sizes on limited GPU memory by accumulating gradients over multiple forward/backward passes before stepping:
 
@@ -247,7 +306,7 @@ for step, batch in enumerate(dataloader):
 
 ---
 
-## 8. Training Stability
+## 9. Training Stability
 
 ### Common Instabilities
 
