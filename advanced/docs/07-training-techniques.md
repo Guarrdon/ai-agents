@@ -1,3 +1,5 @@
+> 📍 [Home](../../README.md) › [Advanced](../README.md) › Advanced AI Training Techniques
+
 # Advanced AI Training Techniques
 
 > **Learning Objectives**
@@ -539,5 +541,7 @@ output = checkpoint_sequential(model.layers, segments=4, input=input)
 - **TRL (Transformer Reinforcement Learning)** — [github.com/huggingface/trl](https://github.com/huggingface/trl)
 
 ---
+
+*Navigation: [Advanced Home](../README.md) · [See also: Training Techniques](training-techniques.md) · [Next: Model Evaluation →](08-model-evaluation.md)*
 
 *Last updated: February 2026*

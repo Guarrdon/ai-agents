@@ -115,6 +115,20 @@ The technical foundations of AI safety and alignment — RLHF, Constitutional AI
 
 ---
 
+## 📖 Supplementary Content
+
+The following documents provide additional depth and alternative perspectives on key topics. They complement the main learning path above.
+
+| Document | Description |
+|----------|-------------|
+| [Neural Networks — In Depth](docs/01-neural-networks.md) | Extended treatment of neural network fundamentals with more implementation detail |
+| [Deep Learning Architectures](docs/02-deep-learning-architectures.md) | CNNs, RNNs, LSTMs, GANs, and VAEs — architectures beyond Transformers |
+| [AI Ethics, Safety, Bias, and Responsible AI Development](docs/06-ai-ethics.md) | Comprehensive guide to fairness, bias, explainability, and regulatory landscape |
+| [Advanced AI Training Techniques](docs/07-training-techniques.md) | Transfer learning, RLHF pipeline, multi-task learning, and curriculum learning |
+| [Model Evaluation Metrics](docs/08-model-evaluation.md) | In-depth coverage of classification, regression, and language model evaluation metrics |
+
+---
+
 ## 🧩 How Each Document Is Structured
 
 Every topic document in this section follows a consistent layout:

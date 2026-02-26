@@ -1,3 +1,5 @@
+> 📍 [Home](../../README.md) › [Advanced](../README.md) › AI Ethics, Safety, Bias, and Responsible AI Development
+
 # AI Ethics, Safety, Bias, and Responsible AI Development
 
 > **Learning Objectives**
@@ -612,5 +614,7 @@ print(f"Emissions: {emissions:.4f} kg CO₂")
 - **Opacus (DP training)** — [opacus.ai](https://opacus.ai)
 
 ---
+
+*Navigation: [Advanced Home](../README.md) · [See also: Safety & Alignment](safety-alignment.md)*
 
 *Last updated: February 2026*

@@ -1,3 +1,5 @@
+> 📍 [Home](../../README.md) › [Advanced](../README.md) › Model Evaluation Metrics
+
 # Model Evaluation Metrics
 
 > **Learning Objectives**
@@ -644,5 +646,7 @@ def sliced_evaluation(y_true, y_pred, groups, metric_fn):
 - **Scikit-learn Metrics Documentation** — [scikit-learn.org/stable/modules/model_evaluation.html](https://scikit-learn.org/stable/modules/model_evaluation.html)
 
 ---
+
+*Navigation: [← Advanced AI Training Techniques](07-training-techniques.md) · [Advanced Home](../README.md) · [See also: Evaluation](evaluation.md)*
 
 *Last updated: February 2026*
