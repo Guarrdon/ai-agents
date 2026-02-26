@@ -1,8 +1,12 @@
 # Advanced AI Section
 
+> 📍 [Home](../README.md) › Advanced AI Section
+
 Welcome to the **Advanced AI** section of the AI Learning Resources. This section is designed for developers, researchers, and technical professionals who are ready to go beyond the basics and explore the mechanics, architectures, and implementation details behind modern AI systems.
 
 **[← Back to Home](../README.md)**
+
+> 💡 **New to AI?** If you haven't already, we recommend starting with the [Beginner Section](../beginner/README.md) to build foundational understanding before diving into the technical content here.
 
 ---
 
@@ -108,6 +112,20 @@ LLM-based autonomous agents — tool use, planning strategies, memory systems, m
 The technical foundations of AI safety and alignment — RLHF, Constitutional AI, mechanistic interpretability, red-teaming, and scalable oversight research.
 
 > **Covers:** Alignment taxonomy, RLAIF, DPO derivation, SAE interpretability, activation steering, GCG attacks, automated red-teaming, scalable oversight
+
+---
+
+## 📖 Supplementary Content
+
+The following documents provide additional depth and alternative perspectives on key topics. They complement the main learning path above.
+
+| Document | Description |
+|----------|-------------|
+| [Neural Networks — In Depth](docs/01-neural-networks.md) | Extended treatment of neural network fundamentals with more implementation detail |
+| [Deep Learning Architectures](docs/02-deep-learning-architectures.md) | CNNs, RNNs, LSTMs, GANs, and VAEs — architectures beyond Transformers |
+| [AI Ethics, Safety, Bias, and Responsible AI Development](docs/06-ai-ethics.md) | Comprehensive guide to fairness, bias, explainability, and regulatory landscape |
+| [Advanced AI Training Techniques](docs/07-training-techniques.md) | Transfer learning, RLHF pipeline, multi-task learning, and curriculum learning |
+| [Model Evaluation Metrics](docs/08-model-evaluation.md) | In-depth coverage of classification, regression, and language model evaluation metrics |
 
 ---
 

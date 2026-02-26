@@ -16,14 +16,19 @@ Welcome to the AI Learning Resources repository! This project provides education
 └── advanced/      # In-depth technical content for experienced learners
     ├── README.md  # Advanced section landing page & learning path
     └── docs/
-        ├── neural-networks.md
+        ├── neural-networks.md              # Main 8-topic learning path
         ├── model-architectures.md
         ├── training-techniques.md
         ├── fine-tuning.md
         ├── evaluation.md
         ├── rag.md
         ├── agents.md
-        └── safety-alignment.md
+        ├── safety-alignment.md
+        ├── 01-neural-networks.md           # Supplementary deep-dives
+        ├── 02-deep-learning-architectures.md
+        ├── 06-ai-ethics.md
+        ├── 07-training-techniques.md
+        └── 08-model-evaluation.md
 ```
 
 ---

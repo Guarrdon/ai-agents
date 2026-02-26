@@ -1,3 +1,5 @@
+> 📍 [Home](../../README.md) › [Advanced](../README.md) › Neural Networks — In Depth
+
 # Neural Networks — In Depth
 
 > **Learning Objectives**
@@ -712,5 +714,7 @@ Always evaluate hyperparameters on a held-out **validation set** — never the t
 - **PyTorch documentation** — [pytorch.org/docs](https://pytorch.org/docs/stable/)
 
 ---
+
+*Navigation: [Advanced Home](../README.md) · [Next: Deep Learning Architectures →](02-deep-learning-architectures.md)*
 
 *Last updated: February 2026*

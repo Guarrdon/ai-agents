@@ -1,3 +1,5 @@
+> 📍 [Home](../../README.md) › [Advanced](../README.md) › Deep Learning Architectures
+
 # Deep Learning Architectures
 
 > **Learning Objectives**
@@ -777,5 +779,7 @@ As a general rule: **start with the simplest architecture that fits your data mo
   - PyTorch tutorials — [pytorch.org/tutorials](https://pytorch.org/tutorials)
 
 ---
+
+*Navigation: [← Neural Networks — In Depth](01-neural-networks.md) · [Advanced Home](../README.md)*
 
 *Last updated: February 2026*
